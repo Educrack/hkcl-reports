@@ -77,12 +77,20 @@ const TestReports = ({
     const excelData: any = [];
     if (testReportData?.length > 0) {
       testReportData.forEach((test: any) => {
-        const latestAttempt = test?.latestAttempt
-          ? moment(test?.latestAttempt?.startedAt).format('ddd, ll')
+        const latestAttempt = test?.attempts[test?.attempts?.length - 1]
+          ?.startedAt
+          ? moment(
+              test?.attempts[test?.attempts?.length - 1]?.startedAt
+            ).format('ddd, ll')
           : '-';
         const studentDetails = {
           'Student Name': test?.user?.name,
           'Attempt Date': latestAttempt,
+          Score: `${
+            Math.ceil(
+              test?.attempts[test?.attempts?.length - 1]?.achievedScore
+            ) || 0
+          } / ${test?.totalMarks || 0}`,
           'Answered Root': test?.assignment?.name
             ? test?.assignment?.name
             : test?.testBundle?.name
@@ -159,7 +167,7 @@ const TestReports = ({
               <Button name="Export" id="Export" onClick={() => exportToExcel()}>
                 <CSVLink
                   data={exportToExcel()}
-                  filename={'Test Bundle Reports.csv'}
+                  filename={`${testReport?.userTestEnrollments[0]?.name} Reports.csv`}
                   target="_blank"
                 >
                   <li className="gv-list export-list">Download</li>
@@ -234,8 +242,10 @@ const TestReports = ({
               dataRenderer: (data: any) =>
                 data?.attempts ? (
                   <div className="primary-text">
-                    {Math.ceil(data?.attempts?.achievedScore) || 0}/
-                    {data?.totalMarks || 0}
+                    {Math.ceil(
+                      data?.attempts[data?.attempts?.length - 1]?.achievedScore
+                    ) || 0}
+                    /{data?.totalMarks || 0}
                   </div>
                 ) : (
                   <div className="primary-text">-</div>
@@ -289,7 +299,7 @@ const TestReports = ({
             },
           ]}
           totalItems={testReport?.totalItems}
-          onPageChange={page => {
+          onPageChange={(page) => {
             setParams({ ...params, page });
           }}
           itemsPerPage={10}

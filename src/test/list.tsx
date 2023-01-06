@@ -11,7 +11,7 @@ export const Avatar = Styled.div<{ url: string }>`
 `;
 
 const mapOptions = (values: any[]) => {
-  return values.map(value => ({ label: value.name, value: value._id }));
+  return values.map((value) => ({ label: value.name, value: value._id }));
 };
 
 const TestList = ({
@@ -38,27 +38,27 @@ const TestList = ({
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
   const exportToExcel = () => {
-    let testData = tests.questionSets
+    let testData = tests.questionSets;
     const excelData: any = [];
     if (testData?.length > 0) {
       testData.forEach((test: any) => {
         const studentDetails = {
-          "Student Name": test?.name,
-          "Course": test?.exam?.course?.name,
-          "Attached with (Source)": test?.attachedWith?.length
+          'Student Name': test?.name,
+          Course: test?.exam?.course?.name,
+          'Attached with (Source)': test?.attachedWith?.length
             ? test?.attachedWith
-              ?.map((attachedWith: any) => {
-                return attachedWith.name;
-              })
-              .join(', ')
+                ?.map((attachedWith: any) => {
+                  return attachedWith.name;
+                })
+                .join(', ')
             : 'Not Available',
-            "No of Students": test?.noOfStudents
+          'No of Students': test?.noOfStudents,
         };
         excelData.push(studentDetails);
       });
     }
     return excelData;
-  }
+  };
 
   useEffect(() => {
     getTests({ ...params }).then(({ data }: any) => {
@@ -118,11 +118,7 @@ const TestList = ({
                   ]}
                 />
               </div>
-              <Button
-                name="Export"
-                id="Export"
-                onClick={() => exportToExcel()}
-              >
+              <Button name="Export" id="Export" onClick={() => exportToExcel()}>
                 <CSVLink
                   data={exportToExcel()}
                   filename={'Test Reports.csv'}
@@ -144,12 +140,11 @@ const TestList = ({
                 Search
               </button>
             </div>
-
           )}
         />
 
         <PaginatedTable
-          onPageChange={page => {
+          onPageChange={(page) => {
             setParams({ ...params, page });
           }}
           totalItems={tests.totalItems}
