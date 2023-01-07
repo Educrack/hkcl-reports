@@ -1,9 +1,9 @@
 import { PageHeader, PaginatedTable, Loader } from '@lipihipi/ec-ui';
 import { Form, Input, Select } from '@lipihipi/form';
 import React, { useEffect, useState } from 'react';
-import { CSVLink } from 'react-csv';
+// import { CSVLink } from 'react-csv';
 import { MdSearch } from 'react-icons/md';
-import { Button } from 'react-bootstrap';
+// import { Button } from 'react-bootstrap';
 import Styled from 'styled-components';
 
 export const Avatar = Styled.div<{ url: string }>`
@@ -37,28 +37,28 @@ const TestList = ({
 
   const [isLoading, setIsLoading] = React.useState<boolean>(true);
 
-  const exportToExcel = () => {
-    let testData = tests.questionSets;
-    const excelData: any = [];
-    if (testData?.length > 0) {
-      testData.forEach((test: any) => {
-        const studentDetails = {
-          'Student Name': test?.name,
-          Course: test?.exam?.course?.name,
-          'Attached with (Source)': test?.attachedWith?.length
-            ? test?.attachedWith
-                ?.map((attachedWith: any) => {
-                  return attachedWith.name;
-                })
-                .join(', ')
-            : 'Not Available',
-          'No of Students': test?.noOfStudents,
-        };
-        excelData.push(studentDetails);
-      });
-    }
-    return excelData;
-  };
+  // const exportToExcel = () => {
+  //   let testData = tests.questionSets;
+  //   const excelData: any = [];
+  //   if (testData?.length > 0) {
+  //     testData.forEach((test: any) => {
+  //       const studentDetails = {
+  //         'Student Name': test?.name,
+  //         Course: test?.exam?.course?.name,
+  //         'Attached with (Source)': test?.attachedWith?.length
+  //           ? test?.attachedWith
+  //               ?.map((attachedWith: any) => {
+  //                 return attachedWith.name;
+  //               })
+  //               .join(', ')
+  //           : 'Not Available',
+  //         'No of Students': test?.noOfStudents,
+  //       };
+  //       excelData.push(studentDetails);
+  //     });
+  //   }
+  //   return excelData;
+  // };
 
   useEffect(() => {
     getTests({ ...params }).then(({ data }: any) => {
@@ -118,7 +118,7 @@ const TestList = ({
                   ]}
                 />
               </div>
-              <Button name="Export" id="Export" onClick={() => exportToExcel()}>
+              {/* <Button name="Export" id="Export" onClick={() => exportToExcel()}>
                 <CSVLink
                   data={exportToExcel()}
                   filename={'Test Reports.csv'}
@@ -126,7 +126,7 @@ const TestList = ({
                 >
                   <li className="gv-list export-list">Download</li>
                 </CSVLink>
-              </Button>
+              </Button> */}
               <div className="col-md-3 d-none">
                 <Select
                   id="exam"

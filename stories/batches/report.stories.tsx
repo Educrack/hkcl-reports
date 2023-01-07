@@ -7,7 +7,7 @@ import EducrackAPI from '@lipihipi/client-sdk';
 export default {
   title: 'batches/report',
 };
-EducrackAPI.setENV('ec2co-ecsel-1ctgqfacuwqzg-1629476056.ap-south-1.elb.amazonaws.com');
+EducrackAPI.setENV('student.hkcl.com.s3-website.ap-south-1.amazonaws.com');
 
 export const ReportStory = () => {
   const [isLoggedIn, setLoggedIn] = useState(false);

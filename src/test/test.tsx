@@ -11,9 +11,9 @@ import { useState } from 'react';
 import { useEffect } from 'react';
 import Styled from 'styled-components';
 import ITestReportProps from './test.types';
-import { CSVLink } from 'react-csv';
+// import { CSVLink } from 'react-csv';
 import { MdSearch } from 'react-icons/md';
-import { Button } from 'react-bootstrap';
+// import { Button } from 'react-bootstrap';
 
 export const Avatar = Styled.div<{ url: string }>`
 	background-image: url(${({ url }: any) => url});
@@ -72,38 +72,38 @@ const TestReports = ({
     });
   };
 
-  const exportToExcel = () => {
-    let testReportData = testReport.userTestEnrollments;
-    const excelData: any = [];
-    if (testReportData?.length > 0) {
-      testReportData.forEach((test: any) => {
-        const latestAttempt = test?.attempts[test?.attempts?.length - 1]
-          ?.startedAt
-          ? moment(
-              test?.attempts[test?.attempts?.length - 1]?.startedAt
-            ).format('ddd, ll')
-          : '-';
-        const studentDetails = {
-          'Student Name': test?.user?.name,
-          'Attempt Date': latestAttempt,
-          Score: `${
-            Math.ceil(
-              test?.attempts[test?.attempts?.length - 1]?.achievedScore
-            ) || 0
-          } / ${test?.totalMarks || 0}`,
-          'Answered Root': test?.assignment?.name
-            ? test?.assignment?.name
-            : test?.testBundle?.name
-            ? test?.testBundle?.name
-            : test?.batch?.name
-            ? test?.batch?.name
-            : 'Not Available',
-        };
-        excelData.push(studentDetails);
-      });
-    }
-    return excelData;
-  };
+  // const exportToExcel = () => {
+  //   let testReportData = testReport.userTestEnrollments;
+  //   const excelData: any = [];
+  //   if (testReportData?.length > 0) {
+  //     testReportData.forEach((test: any) => {
+  //       const latestAttempt = test?.attempts[test?.attempts?.length - 1]
+  //         ?.startedAt
+  //         ? moment(
+  //             test?.attempts[test?.attempts?.length - 1]?.startedAt
+  //           ).format('ddd, ll')
+  //         : '-';
+  //       const studentDetails = {
+  //         'Student Name': test?.user?.name,
+  //         'Attempt Date': latestAttempt,
+  //         Score: `${
+  //           Math.ceil(
+  //             test?.attempts[test?.attempts?.length - 1]?.achievedScore
+  //           ) || 0
+  //         } / ${test?.totalMarks || 0}`,
+  //         'Answered Root': test?.assignment?.name
+  //           ? test?.assignment?.name
+  //           : test?.testBundle?.name
+  //           ? test?.testBundle?.name
+  //           : test?.batch?.name
+  //           ? test?.batch?.name
+  //           : 'Not Available',
+  //       };
+  //       excelData.push(studentDetails);
+  //     });
+  //   }
+  //   return excelData;
+  // };
 
   return (
     <>
@@ -164,7 +164,7 @@ const TestReports = ({
                   onChange={submitForm}
                 />
               </div>
-              <Button name="Export" id="Export" onClick={() => exportToExcel()}>
+              {/* <Button name="Export" id="Export" onClick={() => exportToExcel()}>
                 <CSVLink
                   data={exportToExcel()}
                   filename={`${testReport?.userTestEnrollments[0]?.name} Reports.csv`}
@@ -172,7 +172,7 @@ const TestReports = ({
                 >
                   <li className="gv-list export-list">Download</li>
                 </CSVLink>
-              </Button>
+              </Button> */}
               <button type="submit" className="d-none">
                 Search
               </button>

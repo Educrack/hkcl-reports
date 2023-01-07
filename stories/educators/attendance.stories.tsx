@@ -7,7 +7,7 @@ import EducatorAttendanceList from '../../src/educators/attendance';
 export default {
   title: 'educator/attendance',
 };
-EducrackAPI.setENV('development');
+EducrackAPI.setENV('student.hkcl.com.s3-website.ap-south-1.amazonaws.com');
 
 export const ListStory = () => {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -25,11 +25,7 @@ export const ListStory = () => {
 
   return (
     <BrowserRouter>
-      {isLoggedIn && (
-        <EducatorAttendanceList
-        title={'Educator Attendance'}
-        />
-      )}
+      {isLoggedIn && <EducatorAttendanceList title={'Educator Attendance'} />}
     </BrowserRouter>
   );
 };

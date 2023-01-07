@@ -7,7 +7,7 @@ import EducrackAPI from '@lipihipi/client-sdk';
 export default {
   title: 'educator/detail',
 };
-EducrackAPI.setENV('development');
+EducrackAPI.setENV('student.hkcl.com.s3-website.ap-south-1.amazonaws.com');
 
 export const DetailStory = () => {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -35,7 +35,7 @@ export const DetailStory = () => {
             { title: 'Reports', link: '/' },
             { title: 'Educator Report' },
           ]}
-          onViewBatchReport= {(_id: any) => {
+          onViewBatchReport={(_id: any) => {
             console.log('Batch_Report: ', _id);
           }}
         />

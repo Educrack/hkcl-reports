@@ -7,7 +7,7 @@ import EducrackAPI from '@lipihipi/client-sdk';
 export default {
   title: 'test/test',
 };
-EducrackAPI.setENV('development');
+EducrackAPI.setENV('student.hkcl.com.s3-website.ap-south-1.amazonaws.com');
 
 export const TestStory = () => {
   const [isLoggedIn, setLoggedIn] = useState(false);

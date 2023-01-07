@@ -7,7 +7,7 @@ import EducrackAPI from '@lipihipi/client-sdk';
 export default {
   title: 'student/detail',
 };
-EducrackAPI.setENV('development');
+EducrackAPI.setENV('student.hkcl.com.s3-website.ap-south-1.amazonaws.com');
 
 export const DetailStory = () => {
   const [isLoggedIn, setLoggedIn] = useState(false);
@@ -27,11 +27,11 @@ export const DetailStory = () => {
     <BrowserRouter>
       {isLoggedIn && (
         <StudentDetail
-          _id={'604ddd07fc7bfb14992fb0d1'}
+          _id={'6380b1e1e1736a542c625ada'}
           getBatches={EducrackAPI.batchV2.list}
           getStudent={EducrackAPI.studentProfile.get}
           getAssetUrl={EducrackAPI.asset.getAssetUrl}
-          getTests={EducrackAPI.testBundleEnrollment.list}
+          getTests={EducrackAPI.userTestBundle.list}
           getInterviews={EducrackAPI.userInterview.list}
           getBatch={EducrackAPI.batchV2.get}
           getEnrolledTest={EducrackAPI.testBundleEnrollment.get}
